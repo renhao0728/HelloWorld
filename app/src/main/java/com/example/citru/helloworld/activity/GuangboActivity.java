@@ -30,6 +30,7 @@ public class GuangboActivity extends BaseActivity {
     @Override
     protected void initStatus() {
         int i=10;
+        int y=2;
     }
 
     @Override
