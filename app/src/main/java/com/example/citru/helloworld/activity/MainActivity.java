@@ -177,12 +177,12 @@ public class MainActivity extends BaseActivity {
         switch (view.getId()) {
 
             case R.id.main_login_qq:
-                Intent i23454 = new Intent(mContext, ContentActivity.class);
+                Intent i23454 = new Intent(mContext, TestToolbarActivity.class);
                 startActivity(i23454);
                 break;
 
             case R.id.main_login_weibo:
-                Intent ifsdfdsfs = new Intent(mContext, GuangboActivity.class);
+                Intent ifsdfdsfs = new Intent(mContext, TestActivity.class);
                 startActivity(ifsdfdsfs);
                 break;
 

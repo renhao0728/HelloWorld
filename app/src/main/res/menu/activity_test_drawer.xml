@@ -1,36 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <group android:checkableBehavior="single">
+    <group android:id="@+id/g1">
         <item
             android:id="@+id/nav_camera"
             android:icon="@drawable/ic_menu_camera"
-            android:title="Import" />
+            android:title="主页" />
         <item
             android:id="@+id/nav_gallery"
             android:icon="@drawable/ic_menu_gallery"
-            android:title="Gallery" />
+            android:title="离线管理" />
         <item
             android:id="@+id/nav_slideshow"
             android:icon="@drawable/ic_menu_slideshow"
-            android:title="Slideshow" />
+            android:title="历史记录" />
+
+    </group>
+    <group android:id="@+id/g2">
         <item
-            android:id="@+id/nav_manage"
-            android:icon="@drawable/ic_menu_manage"
-            android:title="Tools" />
+            android:id="@+id/nav_sdsd"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="主页" />
+        <item
+            android:id="@+id/nav_dfgd"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="离线管理" />
+        <item
+            android:id="@+id/nav_hfggf"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="历史记录" />
+
+    </group>
+    <group android:id="@+id/g3">
+        <item
+            android:id="@+id/nav_cvbdf"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="主页" />
+        <item
+            android:id="@+id/nav_nfg"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="离线管理" />
+        <item
+            android:id="@+id/nav_ert"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="历史记录" />
+
     </group>
 
-    <item android:title="Communicate">
-        <menu>
-            <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/ic_menu_share"
-                android:title="Share" />
-            <item
-                android:id="@+id/nav_send"
-                android:icon="@drawable/ic_menu_send"
-                android:title="Send" />
-        </menu>
-    </item>
 
 </menu>

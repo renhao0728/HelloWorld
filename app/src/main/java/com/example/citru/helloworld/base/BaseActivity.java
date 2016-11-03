@@ -4,12 +4,13 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View.OnClickListener;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
 
-public abstract class BaseActivity extends Activity implements OnClickListener {
+public abstract class BaseActivity extends AppCompatActivity implements OnClickListener {
     protected RequestQueue mQueue;
     protected Activity mContext;
     @Override

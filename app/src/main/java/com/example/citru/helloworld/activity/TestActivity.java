@@ -1,47 +1,121 @@
 package com.example.citru.helloworld.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
+import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
+import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.example.citru.helloworld.R;
+import com.example.citru.helloworld.adapter.ViewPagerAdapter;
+import com.example.citru.helloworld.base.BaseActivity;
+import com.example.citru.helloworld.fragment.FragmentOne;
+import com.example.citru.helloworld.fragment.FragmentThree;
+import com.example.citru.helloworld.fragment.FragmentTwo;
 
-public class TestActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+import java.util.ArrayList;
+import java.util.List;
+
+public class TestActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener {
+    Toolbar toolbar;
+    DrawerLayout drawer;
+    NavigationView navigationView;
+    ActionBarDrawerToggle toggle;
+    LinearLayout ll_t;
+    List<Fragment> mFragments;
+    private String[] mTabsArray;
+    ViewPager mViewPager;
+    TabLayout mTablayout;
+    ViewPagerAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_test);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        initData();
+    }
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
+    private void initData() {
+        /**
+         * 初始化toolbar
+         */
+        toolbar.setTitle("");
+        setSupportActionBar(toolbar);
+        /**
+         * 初始化抽屉
+         */
+        toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.addDrawerListener(toggle);
+        /**
+         * 加载数据
+         */
+        //获得tabs的标题
+        mTabsArray = getResources().getStringArray(R.array.home_tabs);
+        //添加fragment
+        mFragments = new ArrayList<>();
+        mFragments.add(new FragmentOne());
+        mFragments.add(new FragmentTwo());
+        mFragments.add(new FragmentThree());
+        //tab和viewpager绑定
+        //给viewpager设置适配器
+        adapter= new ViewPagerAdapter(getSupportFragmentManager(),mFragments,mTabsArray);
+        mViewPager.setAdapter(adapter);
+        mTablayout.setupWithViewPager(mViewPager);
+        //因为viewpager初始化是不会走onPageSelected事件，要手动让它加载一次
+        mViewPager.setCurrentItem(0);
+
+    }
+
+    @Override
+    protected void setContentView() {
+        setContentView(R.layout.activity_test);
+    }
+
+    @Override
+    protected void initStatus() {
+
+    }
+
+    @Override
+    protected void setupView() {
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        navigationView = (NavigationView) findViewById(R.id.nav_view);
+        ll_t=(LinearLayout)findViewById(R.id.ll_toolbar);
+        mTablayout = (TabLayout) findViewById(R.id.home_tablayout);
+        mViewPager = (ViewPager) findViewById(R.id.home_viewpager);
+    }
+
+    @Override
+    protected void addListener() {
+        navigationView.setNavigationItemSelectedListener(this);
+        ll_t.setOnClickListener(this);
+        mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
             }
         });
-
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.setDrawerListener(toggle);
-        toggle.syncState();
-
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
     }
 
     @Override
@@ -56,9 +130,8 @@ public class TestActivity extends AppCompatActivity
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.test, menu);
-        return true;
+        getMenuInflater().inflate(R.menu.menu_home, menu);
+        return super.onCreateOptionsMenu(menu);
     }
 
     @Override
@@ -69,8 +142,17 @@ public class TestActivity extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        switch (item.getItemId()) {
+            case R.id.action_game:
+                Toast.makeText(this, item.getTitle(), Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.action_search:
+                Toast.makeText(this, item.getTitle(), Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.action_download:
+                Toast.makeText(this, item.getTitle(), Toast.LENGTH_SHORT).show();
+                break;
+
         }
 
         return super.onOptionsItemSelected(item);
@@ -88,16 +170,23 @@ public class TestActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_slideshow) {
 
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    public void onClick(View view) {
+    switch (view.getId()){
+        case R.id.ll_toolbar:
+            if (drawer.isDrawerOpen(GravityCompat.START)) {
+                drawer.closeDrawer(GravityCompat.START);
+            } else {
+                drawer.openDrawer(GravityCompat.START);
+            }
+            break;
+    }
     }
 }

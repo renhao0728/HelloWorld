@@ -29,8 +29,8 @@ public class GuangboActivity extends BaseActivity {
 
     @Override
     protected void initStatus() {
-        int i=10;
-        int y=2;
+        int i = 10;
+        int y = 2;
     }
 
     @Override
@@ -41,6 +41,7 @@ public class GuangboActivity extends BaseActivity {
     @Override
     protected void addListener() {
         btGuangbo.setOnClickListener(this);
+
     }
 
     @Override
@@ -54,17 +55,19 @@ public class GuangboActivity extends BaseActivity {
                 break;
         }
     }
+
     @Override
     protected void onStart() {
         super.onStart();
         IntentFilter dynamic_filter = new IntentFilter();
-        dynamic_filter.addAction("com.example.BROADCAST");			//添加动态广播的Action
-        registerReceiver(dynamicReceiver, dynamic_filter);	// 注册自定义动态广播消息
+        dynamic_filter.addAction("com.example.BROADCAST");            //添加动态广播的Action
+        registerReceiver(dynamicReceiver, dynamic_filter);    // 注册自定义动态广播消息
     }
+
     private BroadcastReceiver dynamicReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            if(intent.getAction().equals("com.example.BROADCAST")){	//动作检测
+            if (intent.getAction().equals("com.example.BROADCAST")) {    //动作检测
                 Toast.makeText(context, "广播发送成功", Toast.LENGTH_SHORT).show();
 
             }
