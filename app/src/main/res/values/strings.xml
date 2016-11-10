@@ -12,4 +12,19 @@
         <item>分区</item>
         <item>发现</item>
     </array>
+    <array name="fenqu">
+        <item>直 播</item>
+        <item>番 剧</item>
+        <item>动 画</item>
+        <item>音 乐</item>
+        <item>舞 蹈</item>
+        <item>游 戏</item>
+        <item>科 技</item>
+        <item>娱 乐</item>
+        <item>鬼 畜</item>
+        <item>电 影</item>
+        <item>电视剧</item>
+        <item>时 尚</item>
+        <item>游戏中心</item>
+    </array>
 </resources>

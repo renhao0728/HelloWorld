@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
     tools:context="com.example.citru.helloworld.activity.TestActivity">
 
     <android.support.design.widget.AppBarLayout
@@ -16,8 +15,7 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            app:contentInsetLeft="0dp"
-            app:contentInsetStart="0dp">
+            app:layout_scrollFlags="scroll|enterAlways">
 
             <LinearLayout
                 android:id="@+id/ll_toolbar"

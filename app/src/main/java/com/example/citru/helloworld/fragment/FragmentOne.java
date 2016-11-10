@@ -3,12 +3,14 @@ package com.example.citru.helloworld.fragment;
 import android.os.Handler;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.citru.helloworld.R;
+import com.example.citru.helloworld.adapter.FragmentOneAdapter;
 import com.example.citru.helloworld.base.BaseFragment;
 
 /**
@@ -25,6 +27,10 @@ public class FragmentOne extends BaseFragment implements SwipeRefreshLayout.OnRe
 
     @Override
     public void initData() {
+        //recyclerview的设置
+        //StaggeredGridLayoutManager.VERTICAL 指的是代表有多少列
+//        mRecyclerView.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
+//        mRecyclerView.setAdapter(new FragmentOneAdapter());
     }
 
     @Override
